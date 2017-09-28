@@ -1,22 +1,20 @@
 import Validator from 'validator';
-import isEmpty from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 
-export default function validateInput(data){
-    let errors = {};
-    //const email = encodeURIComponent(email);
-    //const password = encodeURIComponent(password);
+function validateInput(data) {
+  let errors = {};
 
-    if(Validator.isEmpty(data.email)){
-        errors.email = 'This Field is Required';
-    }
-    if(Validator.isEmpty(data.password)){
-        errors.password = 'This Field is Required';
-    }
+  if(Validator.isEmpty(data.identifier)) {
+    errors.identifier = 'This field is required';
+  }
+  if(Validator.isEmpty(data.password)) {
+    errors.password = 'This field is required';
+  }
 
-    return {
-        errors,
-        isValid: isEmpty(errors)
-    }
+  return {
+    errors,
+    isValid: isEmpty(errors)
+  };
 }
 
-
+export default validateInput;
